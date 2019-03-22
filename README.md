@@ -44,8 +44,9 @@ curl -X GET \
 
 ## Cake REST microservice API:
 
-/v1/** - for this pattern of resource path yo udon't need authotization
-/v2/** - for this pattern of resource path yo need OAuth2 authotization
+/v1/** - this pattern of resource path doesn't need authorization
+
+/v2/** - this pattern of resource path needs OAuth2 authorization
 
 ### Getting all cakes
 
