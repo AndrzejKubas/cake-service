@@ -6,13 +6,25 @@
 mvn spring-boot:run
 ```
 
-## OAuth2 info:
+## Authentication info:
+
+```
+admin/admin
+guest/guest
+```
+
+## OAuth2 authorization info:
+
+```
+read-client/read123
+read-write-client/write123
+```
 
 ### Getting OAuth2 authorization token:
 
 ```
 curl -X POST \
-  http://localhost:8080/oauth/token \
+  http://localhost:8000/oauth/token \
   -H 'authorization: Basic cmVhZC1jbGllbnQ6cmVhZDEyMw==' \
   -F grant_type=password \
   -F username=guest \
