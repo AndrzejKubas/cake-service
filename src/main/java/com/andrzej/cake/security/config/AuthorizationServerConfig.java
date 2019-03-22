@@ -2,7 +2,6 @@ package com.andrzej.cake.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,39 +13,37 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
 
+/**
+ * The OAuth2 authorization server configuration.
+ *
+ * @see AuthorizationServerConfigurerAdapter
+ */
 @Configuration
 @EnableAuthorizationServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Import(WebSecurityConfig.class)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+	private final AuthenticationManager authenticationManager;
+	private final UserDetailsService userDetailsService;
+	private final DataSource dataSource;
+
+	/**
+	 * Default constructor for authorization server.
+	 *
+	 * @param authenticationManager authentication manager
+	 * @param userDetailsService user details service
+	 * @param dataSource data source
+	 */
 	@Autowired
-	@Qualifier("dataSource")
-	private DataSource dataSource;
-
-	@Autowired
-	private TokenStore tokenStore;
-
-	@Autowired
-	private AuthenticationManager authenticationManager;
-
-	@Autowired
-	private UserDetailsService userDetailsService;
-
-	@Bean
-	public TokenStore tokenStore() {
-		return new JdbcTokenStore(dataSource);
-	}
-
-	@Bean
-	public OAuth2AccessDeniedHandler oauthAccessDeniedHandler() {
-		return new OAuth2AccessDeniedHandler();
+	public AuthorizationServerConfig(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, @Qualifier("dataSource") DataSource dataSource) {
+		this.authenticationManager = authenticationManager;
+		this.userDetailsService = userDetailsService;
+		this.dataSource = dataSource;
 	}
 
 	@Override
@@ -61,6 +58,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-		endpoints.tokenStore(tokenStore).authenticationManager(authenticationManager).userDetailsService(userDetailsService);
+		endpoints.tokenStore(new JdbcTokenStore(dataSource)).authenticationManager(authenticationManager).userDetailsService(userDetailsService);
 	}
 }

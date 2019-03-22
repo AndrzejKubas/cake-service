@@ -6,7 +6,7 @@ import org.springframework.lang.NonNull;
 import java.util.List;
 
 /**
- * This interface is used to perform all allowed operations on cakes.
+ * The interface is used to perform all allowed operations on cakes.
  *
  */
 public interface CakeService {

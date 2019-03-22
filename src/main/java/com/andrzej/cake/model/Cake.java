@@ -37,7 +37,7 @@ public class Cake {
 	}
 
 	/**
-	 * This cake constructor is used to create and initialize the obj at once.
+	 * The constructor is used to create and initialize the obj at once.
 	 *
 	 * @param title title
 	 * @param description description

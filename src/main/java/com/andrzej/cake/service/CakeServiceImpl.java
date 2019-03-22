@@ -4,7 +4,6 @@ import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.repository.CakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The implementation od @CakeService interface.
+ * The implementation of cake service.
  *
- *@see CakeService
+ * @see CakeService
  */
 @Service
 public class CakeServiceImpl implements CakeService{
@@ -36,7 +35,6 @@ public class CakeServiceImpl implements CakeService{
 	}
 
 	@Override
-	@PreAuthorize("hasAuthority('READ')")
 	public List<Cake> getCakes() {
 		final List<Cake> result = new ArrayList<>();
 		cakeRepository.findAll().forEach(result::add);
@@ -44,13 +42,11 @@ public class CakeServiceImpl implements CakeService{
 	}
 
 	@Override
-	@PreAuthorize("hasAuthority('READ')")
 	public Cake getCake(@NonNull final Long id) {
 		return cakeRepository.findById(id).get();
 	}
 
 	@Override
-	@PreAuthorize("hasAuthority('WRITE')")
 	public Cake addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl) {
 		return cakeRepository.save(new Cake(title, description, imageUrl));
 	}

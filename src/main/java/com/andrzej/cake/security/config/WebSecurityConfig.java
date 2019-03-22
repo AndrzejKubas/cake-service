@@ -11,12 +11,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Web security configuration.
+ *
+ * @see WebSecurityConfigurerAdapter
+ */
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackages = {"com.andrzej.cake.security.service"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 
+	/**
+	 * Default constructor.
+	 *
+	 * @param userDetailsService user detail service
+	 */
 	@Autowired
 	public WebSecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;

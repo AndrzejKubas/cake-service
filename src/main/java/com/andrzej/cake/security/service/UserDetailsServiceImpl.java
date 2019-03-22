@@ -9,11 +9,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * The implementation of user detail service.
+ *
+ * @see UserDetailsService
+ */
 @Service
 @ComponentScan(basePackages = {"com.andrzej.cake.security.repository"})
 public class UserDetailsServiceImpl implements UserDetailsService {
 	private final UserRepository userRepository;
 
+	/**
+	 * Default constructor for initializing the service.
+	 *
+	 * @param userRepository user repository
+	 */
 	@Autowired
 	public UserDetailsServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;

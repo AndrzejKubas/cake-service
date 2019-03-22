@@ -9,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/**
+ * The Authority definition class, used in authorization.
+ *
+ * @see GrantedAuthority
+ */
 @Entity
 @Table(name = "AUTHORITY", uniqueConstraints = {@UniqueConstraint(columnNames = {"AUTHORITY"})})
 public class Authority implements GrantedAuthority {
@@ -20,6 +25,11 @@ public class Authority implements GrantedAuthority {
 	@Column(name = "AUTHORITY")
 	private String authority;
 
+	/**
+	 * The method returns authority's unique identifier.
+	 *
+	 * @return
+	 */
 	public Long getId() {
 		return id;
 	}

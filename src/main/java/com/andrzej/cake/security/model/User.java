@@ -17,6 +17,11 @@ import javax.persistence.UniqueConstraint;
 import java.io.Serializable;
 import java.util.Collection;
 
+/**
+ * The User definition class, used in authentication and authorization.
+ *
+ * @see UserDetails
+ */
 @Entity
 @Table(name = "USER_", uniqueConstraints = { @UniqueConstraint(columnNames = { "USERNAME" }) })
 public class User implements UserDetails, Serializable {
@@ -49,6 +54,11 @@ public class User implements UserDetails, Serializable {
 	@JsonIgnore
 	private Collection<Authority> authorities;
 
+	/**
+	 * The method returns user's unique identifier.
+	 *
+	 * @return
+	 */
 	public Long getId() {
 		return id;
 	}

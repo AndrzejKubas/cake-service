@@ -19,7 +19,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * This runner is loading the pre-defined data(cakes) into the in-memory database.
+ * The runner is loading pre-defined data(cakes) to in-memory database.
+ *
+ * @see ApplicationRunner
  */
 @Component
 public class GithubUserContentLoader implements ApplicationRunner {

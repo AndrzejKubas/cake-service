@@ -4,6 +4,7 @@ import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.service.CakeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * The controller is exposing the REST microservice API and is mapping it into CakeService calls.
+ * The controller is exposing the REST microservice API and is mapping it into {@link CakeService} calls.
  *
  */
 @RestController
@@ -37,6 +38,7 @@ public class CakeController {
 	 *
 	 * @return list of all cakes
 	 */
+	@PreAuthorize("hasAuthority('READ')")
 	@RequestMapping(value = {"v1/cakes", "v2/cakes"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Cake> getCakes() {
 		return cakeService.getCakes();
@@ -50,8 +52,8 @@ public class CakeController {
 	 * @param id unique cake identifier
 	 * @return cake
 	 */
-	@RequestMapping(value = {"v1/cakes/{id}", "v2/cakes/{id}"}, method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasAuthority('READ')")
+	@RequestMapping(value = {"v1/cakes/{id}", "v2/cakes/{id}"}, method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	public Cake getCake(@PathVariable final long id) {
 		return cakeService.getCake(id);
 	}
@@ -66,6 +68,7 @@ public class CakeController {
 	 * @param imageUrl the image URL of the new cake
 	 * @return new generated cake
 	 */
+	@PreAuthorize("hasAuthority('WRITE')")
 	@RequestMapping(value = {"v1/cakes", "v2/cakes"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Cake addCake(@RequestParam(value = "title") final String title,
 							  @RequestParam(value = "desc") final String desc,
