@@ -1,6 +1,6 @@
 package com.andrzej.cake.service;
 
-import com.andrzej.cake.entity.CakeEntity;
+import com.andrzej.cake.model.Cake;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public interface CakeService {
 	 *
 	 * @return List of cakes
 	 */
-	List<CakeEntity> getCakes();
+	List<Cake> getCakes();
 
 	/**
 	 * This method returns the cake selected by it's id.
@@ -24,7 +24,7 @@ public interface CakeService {
 	 * @param id unique cake identifier
 	 * @return cake
 	 */
-	CakeEntity getCake(@NonNull final Long id);
+	Cake getCake(@NonNull final Long id);
 
 	/**
 	 * This method is adding new cake into the system, by filling cake's attributes.
@@ -34,5 +34,5 @@ public interface CakeService {
 	 * @param imageUrl the image URL of the new cake
 	 * @return new generated cake
 	 */
-	CakeEntity addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl);
+	Cake addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl);
 }

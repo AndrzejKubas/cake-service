@@ -1,6 +1,6 @@
 package com.andrzej.cake.runner;
 
-import com.andrzej.cake.entity.CakeEntity;
+import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.repository.CakeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,15 +50,15 @@ public class GithubUserContentLoaderTest {
 		githubUserContentLoader.fetchCakes();
 
 		//then
-		verify(restTemplate, times(1)).getForEntity(GithubUserContentLoader.CAKES_URL, CakeEntity[].class);
+		verify(restTemplate, times(1)).getForEntity(GithubUserContentLoader.CAKES_URL, Cake[].class);
 	}
 
 	@Test
 	public void testFetchCakeList() throws Exception {
 		//given
-		ResponseEntity<CakeEntity[]> responseEntity = Mockito.spy(new ResponseEntity<CakeEntity[]>(HttpStatus.OK));
+		ResponseEntity<Cake[]> responseEntity = Mockito.spy(new ResponseEntity<Cake[]>(HttpStatus.OK));
 		doReturn(responseEntity).when(githubUserContentLoader).fetchCakes();
-		CakeEntity[] cakes = {new CakeEntity()};
+		Cake[] cakes = {new Cake()};
 		doReturn(cakes).when(responseEntity).getBody();
 
 		//when

@@ -1,6 +1,6 @@
 package com.andrzej.cake.runner;
 
-import com.andrzej.cake.entity.CakeEntity;
+import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.repository.CakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -60,8 +60,8 @@ public class GithubUserContentLoader implements ApplicationRunner {
 	 *
 	 * @return server response
 	 */
-	protected ResponseEntity<CakeEntity[]> fetchCakes() {
-		return this.restTemplate.getForEntity(CAKES_URL, CakeEntity[].class);
+	protected ResponseEntity<Cake[]> fetchCakes() {
+		return this.restTemplate.getForEntity(CAKES_URL, Cake[].class);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class GithubUserContentLoader implements ApplicationRunner {
 	 *
 	 * @return
 	 */
-	protected List<CakeEntity> fetchCakeList() {
+	protected List<Cake> fetchCakeList() {
 		return Arrays.asList(fetchCakes().getBody());
 	}
 

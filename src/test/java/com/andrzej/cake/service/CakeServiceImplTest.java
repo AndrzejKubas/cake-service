@@ -1,6 +1,6 @@
 package com.andrzej.cake.service;
 
-import com.andrzej.cake.entity.CakeEntity;
+import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.repository.CakeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +39,7 @@ public class CakeServiceImplTest {
 	@Test
 	public void testGetCakes() throws Exception {
 		//given
-		List<CakeEntity> cakes = Mockito.spy(new ArrayList<>());
+		List<Cake> cakes = Mockito.spy(new ArrayList<>());
 		when(cakeRepository.findAll()).thenReturn(cakes);
 
 		//when
@@ -54,7 +54,7 @@ public class CakeServiceImplTest {
 	public void testGetCake() throws Exception {
 		//given
 		Long id = new Long(1);
-		when(cakeRepository.findById(id)).thenReturn(Optional.of(new CakeEntity()));
+		when(cakeRepository.findById(id)).thenReturn(Optional.of(new Cake()));
 
 		//when
 		cakeServiceImpl.getCake(id);
@@ -68,7 +68,7 @@ public class CakeServiceImplTest {
 		//given
 
 		//when
-		CakeEntity result = cakeServiceImpl.addCake("T", "D", "I");
+		Cake result = cakeServiceImpl.addCake("T", "D", "I");
 
 		//then
 		verify(cakeRepository, times(1)).save(notNull());

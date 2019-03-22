@@ -1,9 +1,11 @@
 package com.andrzej.cake.service;
 
-import com.andrzej.cake.entity.CakeEntity;
+import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.repository.CakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +22,9 @@ public class CakeServiceImpl implements CakeService{
 
 	private CakeRepository cakeRepository;
 
+	@Autowired
+	private UserDetailsService userDetailsService;
+
 	/**
 	 * Default constructor for initializing the service.
 	 *
@@ -31,19 +36,22 @@ public class CakeServiceImpl implements CakeService{
 	}
 
 	@Override
-	public List<CakeEntity> getCakes() {
-		final List<CakeEntity> result = new ArrayList<>();
+	@PreAuthorize("hasAuthority('READ')")
+	public List<Cake> getCakes() {
+		final List<Cake> result = new ArrayList<>();
 		cakeRepository.findAll().forEach(result::add);
 		return result;
 	}
 
 	@Override
-	public CakeEntity getCake(@NonNull final Long id) {
+	@PreAuthorize("hasAuthority('READ')")
+	public Cake getCake(@NonNull final Long id) {
 		return cakeRepository.findById(id).get();
 	}
 
 	@Override
-	public CakeEntity addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl) {
-		return cakeRepository.save(new CakeEntity(title, description, imageUrl));
+	@PreAuthorize("hasAuthority('WRITE')")
+	public Cake addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl) {
+		return cakeRepository.save(new Cake(title, description, imageUrl));
 	}
 }

@@ -1,42 +1,52 @@
-package com.andrzej.cake.entity;
+package com.andrzej.cake.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * The Cake definition class.
  */
 @Entity
-public class CakeEntity {
+@Table(name = "CAKE")
+public class Cake {
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
+
+	@Column(name = "TITLE")
 	private String title;
+
+	@Column(name = "DESCRIPTION")
 	private String description;
+
+	@Column(name = "IMAGE_URL")
 	private String imageUrl;
 
 	/**
 	 * Default empty cake constructor.
 	 *
 	 */
-	public CakeEntity() {
+	public Cake() {
 	}
 
 	/**
 	 * This cake constructor is used to create and initialize the obj at once.
 	 *
-* @param title ca
-	 * @param description
-	 * @param imageUrl
+	 * @param title title
+	 * @param description description
+	 * @param imageUrl image URL
 	 */
 	@JsonCreator
-	public CakeEntity(@JsonProperty("title") final String title,
-					  @JsonProperty("desc") final String description,
-					  @JsonProperty("image") final String imageUrl) {
+	public Cake(@JsonProperty("title") final String title,
+				@JsonProperty("desc") final String description,
+				@JsonProperty("image") final String imageUrl) {
 		this.title = title;
 		this.description = description;
 		this.imageUrl = imageUrl;
