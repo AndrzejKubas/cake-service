@@ -1,4 +1,4 @@
-# Cake REST microservice - sample code
+# Cake REST microservice - code sample
 
 ## Running info:
 
