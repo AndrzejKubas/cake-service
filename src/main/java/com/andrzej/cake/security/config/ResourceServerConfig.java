@@ -18,7 +18,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	protected static final String OAUTH2_RESOURCE_ID = "resource-server";
 	protected static final String OAUTH2_READ_SCOPE = "#oauth2.hasScope('read')";
 	protected static final String OAUTH2_WRITE_SCOPE = "#oauth2.hasScope('write')";
-	protected static final String OAUTH2_PATTERN = "/v2/**";
+	protected static final String OAUTH2_PATTERN = "/api/services/**";
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {

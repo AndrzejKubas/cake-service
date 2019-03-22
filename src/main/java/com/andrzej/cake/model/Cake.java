@@ -1,6 +1,5 @@
 package com.andrzej.cake.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Column;
@@ -21,12 +20,15 @@ public class Cake {
 	private Long id;
 
 	@Column(name = "TITLE")
+	@JsonProperty("title")
 	private String title;
 
 	@Column(name = "DESCRIPTION")
+	@JsonProperty("desc")
 	private String description;
 
 	@Column(name = "IMAGE_URL")
+	@JsonProperty("image")
 	private String imageUrl;
 
 	/**
@@ -43,10 +45,7 @@ public class Cake {
 	 * @param description description
 	 * @param imageUrl image URL
 	 */
-	@JsonCreator
-	public Cake(@JsonProperty("title") final String title,
-				@JsonProperty("desc") final String description,
-				@JsonProperty("image") final String imageUrl) {
+	public Cake(final String title, final String description, final String imageUrl) {
 		this.title = title;
 		this.description = description;
 		this.imageUrl = imageUrl;

@@ -1,5 +1,6 @@
 package com.andrzej.cake.controller;
 
+import com.andrzej.cake.model.Cake;
 import com.andrzej.cake.service.CakeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -56,9 +58,9 @@ public class CakeControllerTest {
 		//given
 
 		//when
-		cakeController.addCake("Title", "Description", "URL");
+		cakeController.addCake(new Cake());
 
 		//then
-		verify(cakeService, times(1)).addCake("Title", "Description", "URL");
+		verify(cakeService, times(1)).addCake(isA(Cake.class));
 	}
 }

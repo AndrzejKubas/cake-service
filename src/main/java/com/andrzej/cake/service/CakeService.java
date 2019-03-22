@@ -29,10 +29,8 @@ public interface CakeService {
 	/**
 	 * This method is adding new cake into the system, by filling cake's attributes.
 	 *
-	 * @param title the title of new cake
-	 * @param description the description of bew cake
-	 * @param imageUrl the image URL of the new cake
+	 * @param cake new cake
 	 * @return new generated cake
 	 */
-	Cake addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl);
+	Cake addCake(@NonNull final Cake cake);
 }

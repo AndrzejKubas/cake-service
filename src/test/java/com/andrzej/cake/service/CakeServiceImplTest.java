@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.notNull;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -68,9 +68,9 @@ public class CakeServiceImplTest {
 		//given
 
 		//when
-		Cake result = cakeServiceImpl.addCake("T", "D", "I");
+		Cake result = cakeServiceImpl.addCake(new Cake());
 
 		//then
-		verify(cakeRepository, times(1)).save(notNull());
+		verify(cakeRepository, times(1)).save(isA(Cake.class));
 	}
 }

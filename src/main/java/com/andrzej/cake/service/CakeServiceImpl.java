@@ -47,7 +47,10 @@ public class CakeServiceImpl implements CakeService{
 	}
 
 	@Override
-	public Cake addCake(@NonNull final String title, @NonNull final String description, @NonNull final String imageUrl) {
-		return cakeRepository.save(new Cake(title, description, imageUrl));
+	public Cake addCake(@NonNull final Cake cake) {
+		if (cake.getId() != null) {
+			throw new IllegalArgumentException("error.cake.id");
+		}
+		return cakeRepository.save(cake);
 	}
 }
