@@ -23,6 +23,8 @@ import static org.mockito.Mockito.when;
 
 /**
  * Unit tests for GithubUserContentLoader
+ *
+ * @see GithubUserContentLoader
  */
 @RunWith(MockitoJUnitRunner.class)
 public class GithubUserContentLoaderTest {

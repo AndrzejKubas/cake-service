@@ -13,7 +13,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
- * Unit tests for CakeController
+ * Unit tests for CakeController.
+ *
+ * @see CakeController
  */
 @RunWith(MockitoJUnitRunner.class)
 public class CakeControllerTest {
